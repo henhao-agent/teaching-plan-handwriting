@@ -383,7 +383,13 @@ def fit_header(text, box, kind, font=FONT_DEFAULT, uni_ink=None):
 # ---------------------------------------------------------------- 模板
 def load_template():
     os.makedirs(TPL_DIR, exist_ok=True)
-    paths = [os.path.join(TPL_DIR, "tpl_p%d.png" % i) for i in range(2)]
+    # 模板优先 PNG，其次 JPG（仓库里放的是压缩过的 JPG，省 87% 体积）
+    paths = []
+    for i in range(2):
+        cands = [os.path.join(TPL_DIR, "tpl_p%d.png" % i),
+                 os.path.join(TPL_DIR, "tpl_p%d.jpg" % i)]
+        found = next((c for c in cands if os.path.exists(c)), cands[0])
+        paths.append(found)
     if not all(os.path.exists(p) for p in paths):
         # 模板图缺失时，从仓库里的 PDF 现转（放在 templates/ 下任意 pdf）
         import glob as _glob
