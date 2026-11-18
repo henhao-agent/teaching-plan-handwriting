@@ -1,0 +1,25 @@
+# 字体不随仓库分发（版权 + 应当是你自己的笔迹）
+assets/*.ttf
+assets/*.otf
+assets/*.ttc
+font.ttf
+
+# 生成物
+output/
+scripts/output/
+
+# 个人内容（教案正文含真实姓名等）
+my_*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
